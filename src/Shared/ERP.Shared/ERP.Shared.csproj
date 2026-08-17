@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ERP.Shared ("Shared Kernel")
+    ============================
+    Framework-agnostic, dependency-free utilities used by every other project:
+    Guard clauses, constants, extension methods, localization resource keys.
+    Does NOT reference ERP.Domain, so that Shared can be used even by the
+    lowest-level infrastructure concerns without creating cycles.
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Shared</AssemblyName>
+    <RootNamespace>ERP.Shared</RootNamespace>
+  </PropertyGroup>
+
+</Project>

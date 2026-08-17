@@ -1,0 +1,21 @@
+@page "/"
+@* [Authorize] is intentionally NOT yet applied here: the Users/Login module
+   (Security phase, per the approved Implementation Roadmap - Prompt 13)
+   has not been implemented in this scaffolding milestone, so there is no
+   login page to redirect to yet. This attribute is restored the moment
+   that module exists. *@
+
+<PageTitle>لوحة التحكم | GovERP</PageTitle>
+
+<MudText Typo="Typo.h4" GutterBottom="true">لوحة التحكم</MudText>
+
+<MudAlert Severity="Severity.Info" Variant="Variant.Outlined" Class="mt-4">
+    تم إنشاء البنية الأساسية للنظام بنجاح. سيتم إضافة مؤشرات الأداء الرئيسية،
+    ملخصات الحسابات، والموافقات المعلّقة في مراحل التنفيذ القادمة وفقًا لخطة
+    التنفيذ المعتمدة (Prompt 13) ومواصفة التقارير ولوحات التحكم (Prompt 9).
+    <br />
+    <em>Scaffolding milestone complete - dashboard KPIs, account summaries and
+    pending approvals are implemented in upcoming milestones per the approved
+    Implementation Roadmap (Prompt 13) and Reporting &amp; Dashboard
+    Specification (Prompt 9).</em>
+</MudAlert>

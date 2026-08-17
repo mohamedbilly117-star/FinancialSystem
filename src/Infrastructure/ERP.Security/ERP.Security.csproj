@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ERP.Security
+    ============
+    Implements the Security, Authorization, Permissions & Audit Framework
+    approved in Prompt 6:
+      - ApplicationUser / ApplicationRole (ASP.NET Core Identity, Guid keys)
+      - Granular permission engine (View/Create/Edit/Delete/Approve/Reject/
+        Post/Reverse/Print/Export/Import/ClosePeriod/ReopenPeriod/Admin/Config)
+      - Policy-based authorization handlers evaluated centrally (never
+        duplicated per-module, per the approved Security Principles)
+      - Office/Department data-isolation contracts
+
+    Deliberately does NOT reference ERP.Persistence, to avoid a circular
+    project reference (Persistence depends on Security for the Identity
+    entity types used by IdentityDbContext<TUser,TRole,TKey>).
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Security</AssemblyName>
+    <RootNamespace>ERP.Security</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" />
+    <!--
+      Added for PermissionService's async LINQ queries (ToListAsync,
+      AnyAsync) against IApplicationDbContext and RoleManager.Roles. This
+      was already available transitively via
+      Microsoft.AspNetCore.Identity.EntityFrameworkCore, but is declared
+      explicitly per standard practice for any package referenced directly
+      in code, rather than relying on an implicit transitive reference.
+    -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ERP.Domain\ERP.Domain.csproj" />
+    <ProjectReference Include="..\..\Core\ERP.Application\ERP.Application.csproj" />
+    <ProjectReference Include="..\..\Shared\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

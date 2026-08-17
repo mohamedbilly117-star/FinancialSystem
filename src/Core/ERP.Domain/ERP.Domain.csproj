@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ERP.Domain
+    ==========
+    Clean Architecture: Domain (Entities) layer.
+
+    RULE (enforced by ERP.ArchitectureTests):
+    This project must never reference ERP.Application, ERP.Persistence,
+    ERP.Infrastructure, ERP.Security, ERP.Workflow, ERP.Notifications,
+    ERP.Reporting or ERP.Web, and must never take a dependency on Entity
+    Framework Core, ASP.NET Core, or any other infrastructure/framework
+    concern. It contains only:
+      - Entities & Aggregates
+      - Value Objects
+      - Domain Events
+      - Enums
+      - Domain Exceptions
+      - Business Rule interfaces/implementations (IBusinessRule)
+    This keeps the accounting/business rules portable, testable in isolation,
+    and framework-agnostic for the 10+ year lifetime of the system.
+
+    EXCEPTION: ERP.Shared (the "Shared Kernel") IS referenced below.
+    It is itself dependency-free (see ERP.Shared.csproj) and exists
+    specifically to hold cross-cutting primitives such as Guard clauses
+    that Domain entities and Value Objects need for constructor validation
+    (Prompt 2/4's Validation Rules) without duplicating that logic in every
+    layer - this is the classic DDD "Shared Kernel" usage, and is why
+    ERP.ArchitectureTests' Domain rule deliberately excludes ERP.Shared
+    from the forbidden-dependency list.
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Domain</AssemblyName>
+    <RootNamespace>ERP.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

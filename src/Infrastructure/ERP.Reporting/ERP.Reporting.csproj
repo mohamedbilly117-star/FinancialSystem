@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ERP.Reporting
+    =============
+    Centralized Reporting Architecture (Prompt 3 / Prompt 9):
+      - PDF generation via QuestPDF (approved, Prompt 0 & Implementation
+        Clarification #1)
+      - Excel generation via ClosedXML (approved, Prompt 0 & Implementation
+        Clarification #1)
+      - Shared report models: filters, grouping, sorting, RTL-aware
+        pagination/typography helpers reused by every report in the system
+        (General Ledger, Trial Balance, Bank/Treasury/Cards/Advances/Aid
+        reports, etc. per Prompt 9's Report Catalogue).
+    Reports never bypass the Application layer's authorization checks -
+    ERP.Reporting only renders data it is handed; permission enforcement of
+    *which* data a user may see happens in ERP.Application/ERP.Security.
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Reporting</AssemblyName>
+    <RootNamespace>ERP.Reporting</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="QuestPDF" />
+    <PackageReference Include="ClosedXML" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ERP.Domain\ERP.Domain.csproj" />
+    <ProjectReference Include="..\..\Core\ERP.Application\ERP.Application.csproj" />
+    <ProjectReference Include="..\..\Shared\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

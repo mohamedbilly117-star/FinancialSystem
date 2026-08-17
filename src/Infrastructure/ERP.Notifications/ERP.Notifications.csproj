@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ERP.Notifications
+    ==================
+    Centralized Notification Engine approved in Prompt 10: in-app system,
+    workflow, approval, reminder, warning, deadline and overdue notifications
+    now; Email/SMS/Push are explicitly future-scoped and must slot in behind
+    the same INotificationSender abstraction without redesign.
+    Notifications must respect permissions (Prompt 6) - a user only ever
+    receives notifications tied to their own responsibilities.
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Notifications</AssemblyName>
+    <RootNamespace>ERP.Notifications</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ERP.Domain\ERP.Domain.csproj" />
+    <ProjectReference Include="..\..\Core\ERP.Application\ERP.Application.csproj" />
+    <ProjectReference Include="..\..\Shared\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!--
+    ERP.Web
+    =======
+    Presentation layer - Blazor Server (interactive server-side rendering,
+    SignalR circuit based; no WebAssembly, no client download, matching the
+    approved "Offline / LAN / Desktop-oriented" deployment model).
+
+    This is the Composition Root: it is the ONLY project allowed to
+    reference every other project, and the only place DependencyInjection
+    wiring from every layer gets called (Program.cs).
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Web</AssemblyName>
+    <RootNamespace>ERP.Web</RootNamespace>
+    <UserSecretsId>govERP-web-2f6b1a3e-4c9d-4e2a-9a5a-000000000001</UserSecretsId>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <!-- Must stay false: Arabic (ar-EG) culture formatting (dates, numbers, currency) is required -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MudBlazor" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ERP.Application\ERP.Application.csproj" />
+    <ProjectReference Include="..\..\Core\ERP.Domain\ERP.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ERP.Infrastructure\ERP.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ERP.Persistence\ERP.Persistence.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ERP.Security\ERP.Security.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ERP.Workflow\ERP.Workflow.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ERP.Notifications\ERP.Notifications.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ERP.Reporting\ERP.Reporting.csproj" />
+    <ProjectReference Include="..\..\Shared\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

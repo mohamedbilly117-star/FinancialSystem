@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ERP.Infrastructure
+    ===================
+    Clean Architecture: general Infrastructure ring.
+
+    Implements Application-layer service interfaces that are not specific to
+    persistence, security, workflow, notifications or reporting:
+      - ICurrentUserService (who is the logged-in user / office / role)
+      - IDateTimeService   (testable clock, always server time - offline LAN)
+      - File storage (attachments per Prompt 4 "Attachments" entity)
+      - Centralized Serilog configuration (Application/Audit/Security/
+        Performance/User Activity/Error logs per Prompt 3 Logging Architecture)
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Infrastructure</AssemblyName>
+    <RootNamespace>ERP.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <!--
+    IHttpContextAccessor / AddHttpContextAccessor() / HttpContextAccessor
+    are part of the ASP.NET Core shared framework, not a standalone NuGet
+    package on .NET 8. Because this project uses the plain
+    Microsoft.NET.Sdk (not Microsoft.NET.Sdk.Web), it must opt in via
+    FrameworkReference rather than PackageReference.
+  -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.File" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Serilog.Enrichers.Environment" />
+    <PackageReference Include="Serilog.Enrichers.Thread" />
+    <!--
+      Needed for NumberingSequenceService's async LINQ (FirstOrDefaultAsync)
+      against IApplicationDbContext - the same pragmatic EF Core
+      Abstractions dependency already used by ERP.Application and
+      ERP.Security, for the same reason (Implementation Clarification #1:
+      avoid a redundant wrapper where EF Core's own types already serve).
+    -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ERP.Domain\ERP.Domain.csproj" />
+    <ProjectReference Include="..\..\Core\ERP.Application\ERP.Application.csproj" />
+    <ProjectReference Include="..\..\Shared\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

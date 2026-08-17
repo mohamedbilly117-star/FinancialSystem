@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ERP.Workflow
+    ============
+    Implements the Workflow Engine, Approval Engine, Escalation Engine and
+    Business Process Lifecycle approved in Prompt 10. Workflow templates,
+    approval chains and escalation rules are DATA-DRIVEN (configured by
+    administrators via ERP.Application configuration use-cases) - this
+    project must never hardcode a specific module's approval chain.
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Workflow</AssemblyName>
+    <RootNamespace>ERP.Workflow</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\ERP.Domain\ERP.Domain.csproj" />
+    <ProjectReference Include="..\..\Core\ERP.Application\ERP.Application.csproj" />
+    <ProjectReference Include="..\..\Shared\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

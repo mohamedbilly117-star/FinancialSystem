@@ -1,0 +1,39 @@
+<Project>
+
+  <!--
+    GovERP - Government Financial ERP System
+    Common build settings shared by every project in the solution.
+    Individual .csproj files should NOT repeat these settings.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+    <NeutralLanguage>ar</NeutralLanguage>
+
+    <!-- Treat warnings seriously in an enterprise/government codebase -->
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
+    <NoWarn>CS1591</NoWarn>
+
+    <!-- Consistent assembly metadata -->
+    <Company>Government Financial ERP</Company>
+    <Product>GovERP</Product>
+    <Authors>GovERP Engineering Team</Authors>
+    <Copyright>Government Financial ERP Project</Copyright>
+
+    <!-- Root of the repo, used for relative path resolution (e.g. StyleCop, analyzers) -->
+    <SolutionDir Condition="'$(SolutionDir)' == ''">$(MSBuildThisFileDirectory)</SolutionDir>
+
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Central place to pin analyzer / code style behavior later (EditorConfig drives most of it) -->
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+
+</Project>

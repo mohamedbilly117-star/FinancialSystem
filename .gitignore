@@ -1,0 +1,69 @@
+## .NET / Visual Studio
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.vscode/
+*.userosscache
+*.sln.docstates
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+## Rider / ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+coverage*.json
+coverage*.xml
+coverage*.info
+TestResults/
+
+## EF Core
+*.mdf
+*.ldf
+*.ndf
+
+## Logs (Serilog rolling files)
+logs/
+*.log
+
+## Secrets - NEVER commit connection strings, keys or certificates
+appsettings.*.local.json
+secrets.json
+*.pfx
+*.snk
+
+## User-specific / local override files
+local.settings.json
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## Node (only if front-end tooling is added later)
+node_modules/
+
+## Publish output
+publish/
+PublishProfiles/*.user

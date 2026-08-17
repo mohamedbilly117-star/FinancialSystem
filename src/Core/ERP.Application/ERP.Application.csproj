@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ERP.Application
+    ===============
+    Clean Architecture: Application layer (use cases / orchestration).
+
+    RULE (enforced by ERP.ArchitectureTests):
+    May reference ERP.Domain and ERP.Shared ONLY.
+    Must NEVER reference ERP.Persistence, ERP.Infrastructure, ERP.Security,
+    ERP.Workflow, ERP.Notifications, ERP.Reporting or ERP.Web.
+    Instead it defines the *interfaces* that those outer layers implement
+    (IApplicationDbContext, ICurrentUserService, IDateTime, etc.) following
+    the Dependency Inversion Principle.
+
+    Contains: use-case services, DTOs, FluentValidation validators,
+    AutoMapper profiles, and the abstractions every module implementation
+    (Revenue, Expense, Accounting, Banks, ...) will build on.
+  -->
+
+  <PropertyGroup>
+    <AssemblyName>ERP.Application</AssemblyName>
+    <RootNamespace>ERP.Application</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <!--
+      Microsoft.EntityFrameworkCore (core package only - NOT .SqlServer,
+      .Design or .Tools, which stay confined to ERP.Persistence) is
+      referenced here solely so IApplicationDbContext can expose
+      DbSet<TEntity> directly. Per Implementation Clarification #1
+      ("avoid redundant wrapper implementations" when EF Core already
+      provides equivalent functionality), hand-rolling a parallel
+      IQueryable/repository abstraction purely to keep this package out of
+      Application would be exactly that kind of unnecessary indirection -
+      this is the same pragmatic, widely-used compromise as the reference
+      Clean Architecture templates this solution's structure follows.
+      Application still never references EF Core's SQL Server provider,
+      migrations tooling, or ApplicationDbContext itself.
+    -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ERP.Domain\ERP.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

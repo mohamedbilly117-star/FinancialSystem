@@ -1,0 +1,33 @@
+/* GovERP - base application stylesheet
+   ------------------------------------
+   Minimal, RTL-safe foundation only. The full Visual Design System
+   (typography scale, spacing scale, color usage principles, component
+   styling for grids/forms/dialogs/badges/alerts, Dark Mode readiness)
+   approved in Prompt 8 is authored during the dedicated UI implementation
+   milestone. Kept intentionally small here so it never conflicts with
+   that upcoming, more complete stylesheet. */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Segoe UI", Tahoma, Cairo, Arial, sans-serif;
+}
+
+/* The whole application is Arabic-first / RTL-native (Prompt 8).
+   Direction is also set at the <html> level in App.razor; this rule is a
+   defensive fallback for any element rendered before hydration. */
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+a, .mud-nav-link {
+    text-decoration: none;
+}
+
+/* Keyboard-focus visibility (Prompt 8 - Accessibility: "Keyboard-only Usage") */
+:focus-visible {
+    outline: 2px solid #0B3D5C;
+    outline-offset: 2px;
+}

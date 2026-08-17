@@ -1,0 +1,43 @@
+@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="GovErpTheme.Theme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudRTLProvider RightToLeft="true">
+    <MudLayout>
+        <MudAppBar Elevation="1">
+            <MudText Typo="Typo.h6" Class="ms-2">
+                النظام المالي الحكومي المتكامل
+            </MudText>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Filled.Notifications" Color="Color.Inherit" />
+            <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" />
+        </MudAppBar>
+
+        <MudDrawer @bind-Open="_drawerOpen" Anchor="Anchor.End" Elevation="2" Variant="@DrawerVariant.Mini">
+            <MudNavMenu>
+                <MudNavLink Href="" Icon="@Icons.Material.Filled.Dashboard" Match="NavLinkMatch.All">
+                    لوحة التحكم
+                </MudNavLink>
+                <!--
+                    Full navigation tree (Modules: Banks, Treasury, Accounting,
+                    Contracts, Advances, Aid, Cards, Reports, Administration, ...)
+                    is built alongside each corresponding module per the
+                    approved Implementation Roadmap (Prompt 13) and the
+                    Navigation Specification (Prompt 8). This scaffold
+                    intentionally exposes only the Dashboard placeholder link.
+                -->
+            </MudNavMenu>
+        </MudDrawer>
+
+        <MudMainContent Class="pa-4">
+            @Body
+        </MudMainContent>
+    </MudLayout>
+</MudRTLProvider>
+
+@code {
+    private bool _drawerOpen = true;
+}
